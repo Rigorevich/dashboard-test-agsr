@@ -16,12 +16,42 @@ const compat = new FlatCompat({
 const eslintConfig = [
   ...compat.extends('next/core-web-vitals', 'next/typescript'),
   {
+    ignores: ['node_modules', '.next', 'public', '**/*.config.js', 'scripts/**'],
+  },
+  {
     plugins: {
       import: importPlugin,
       'react-hooks': reactHooks,
     },
     rules: {
-      'import/order': ['error', { 'newlines-between': 'always' }],
+      'import/order': [
+        'error',
+        {
+          groups: [
+            'builtin',
+            'external',
+            'internal',
+            ['parent', 'sibling', 'index'],
+            'object',
+            'type',
+            'unknown',
+          ],
+          pathGroups: [
+            {
+              pattern: '@/**',
+              group: 'internal',
+              position: 'after',
+            },
+            {
+              pattern: '*.scss',
+              group: 'index',
+              position: 'after',
+            },
+          ],
+          pathGroupsExcludedImportTypes: ['builtin', 'external'],
+          'newlines-between': 'always',
+        },
+      ],
       'react-hooks/rules-of-hooks': 'error',
     },
   },

@@ -1,0 +1,23 @@
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  color: #ffffff;
+  text-align: center;
+  background: var(--background-gradient);
+  padding: 2rem;
+
+  &__title {
+    font-size: 6rem;
+    font-weight: 900;
+    margin-bottom: 1rem;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  &__message {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+  }
+}
