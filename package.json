@@ -11,13 +11,8 @@
     "format": "prettier --write .",
     "prepare": "husky"
   },
-  "lint-staged": {
-    "*.{js,ts,tsx}": [
-      "eslint --fix",
-      "prettier --write"
-    ]
-  },
   "dependencies": {
+    "classnames": "^2.5.1",
     "next": "15.1.8",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
