@@ -2,9 +2,11 @@ import { useState } from 'react';
 import { Pencil, Trash2 } from 'lucide-react';
 
 import type { List as ListType } from '@/types';
+import { ConfirmModal } from '@/components/ui/Modal/ConfirmModal/ConfirmModal';
 import { Button } from '@/components/ui/Button/Button';
 import { useAppDispatch } from '@/store/hooks';
-import { editList } from '@/store/slices/listsSlice';
+import { editList, deleteList } from '@/store/slices/listsSlice';
+import { notify } from '@/utils/toast';
 
 import { EditableTitle } from './EditableHeader/EditableHeader';
 import { Task } from '../Task/Task';
@@ -16,7 +18,17 @@ interface ListProps {
 
 export const List = ({ list }: ListProps) => {
   const [isEditing, setIsEditing] = useState(false);
+  const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
+
   const dispatch = useAppDispatch();
+
+  const handleDeleteList = () => {
+    dispatch(deleteList(list.id));
+
+    notify.success(`Список ${list.title} успешно удален!`);
+
+    setIsConfirmModalOpen(false);
+  };
 
   const handleSaveTitle = (newTitle: string) => {
     dispatch(editList({ ...list, title: newTitle }));
@@ -39,7 +51,7 @@ export const List = ({ list }: ListProps) => {
             <Button size="small" variant="secondary" onClick={() => setIsEditing(true)}>
               <Pencil size={16} />
             </Button>
-            <Button size="small" variant="secondary">
+            <Button size="small" variant="secondary" onClick={() => setIsConfirmModalOpen(true)}>
               <Trash2 size={16} />
             </Button>
           </div>
@@ -51,6 +63,13 @@ export const List = ({ list }: ListProps) => {
           <Task key={task.id} task={task} />
         ))}
       </div>
+
+      <ConfirmModal
+        message={`Вы уверены что хотите удалить список ${list.title}?`}
+        isOpen={isConfirmModalOpen}
+        onClose={() => setIsConfirmModalOpen(false)}
+        onConfirm={handleDeleteList}
+      />
     </div>
   );
 };

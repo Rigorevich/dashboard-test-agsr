@@ -8,6 +8,7 @@
 .lists {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  align-items: flex-start;
   gap: 1rem;
 }
 
@@ -15,7 +16,7 @@
   background: #ffffff;
   color: var(--accent-color);
   font-weight: bold;
-  padding: 1rem;
+  padding: 2rem;
   border-radius: 1rem;
   display: flex;
   align-items: center;
