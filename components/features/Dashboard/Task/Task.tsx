@@ -1,4 +1,5 @@
 import type { Task as TaskType } from '@/types';
+import { Button } from '@/components/ui/Button/Button';
 
 import styles from './Task.module.scss';
 
@@ -8,11 +9,9 @@ interface TaskProps {
 
 export const Task = ({ task }: TaskProps) => {
   return (
-    <div className={styles.task}>
-      <div>
-        <h4>{task.title}</h4>
-        <p>{task.description}</p>
-      </div>
-    </div>
+    <Button className={styles.task}>
+      <h4 className={styles.title}>{task.title}</h4>
+      <p className={styles.description}>{task.description}</p>
+    </Button>
   );
 };

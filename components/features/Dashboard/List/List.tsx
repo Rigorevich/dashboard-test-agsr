@@ -62,6 +62,8 @@ export const List = ({ list }: ListProps) => {
         {list.tasks.map(task => (
           <Task key={task.id} task={task} />
         ))}
+
+        <Button className={styles.newTask}>Добавить задачу</Button>
       </div>
 
       <ConfirmModal

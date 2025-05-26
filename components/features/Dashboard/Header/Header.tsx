@@ -1,5 +1,7 @@
 import { LogOut } from 'lucide-react';
 
+import { Button } from '@/components/ui/Button/Button';
+
 import styles from './Header.module.scss';
 
 export const Header = () => {
@@ -8,9 +10,9 @@ export const Header = () => {
   return (
     <header className={styles.header}>
       <h1 className={styles.title}>Мои списки задач</h1>
-      <button onClick={handleLogout} className={styles.logout}>
+      <Button onClick={handleLogout} className={styles.logout}>
         <LogOut size={18} /> Выйти
-      </button>
+      </Button>
     </header>
   );
 };
