@@ -3,19 +3,22 @@ import classNames from 'classnames';
 
 import styles from './Input.module.scss';
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+type InputSize = 'small' | 'medium';
+
+interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
   error?: string;
   label?: string;
+  size?: InputSize;
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ error, className, label, ...props }, ref) => (
+  ({ size = 'medium', error, className, label, ...props }, ref) => (
     <div className={classNames(styles.wrapper, className)}>
       <label className={styles.label}>
         {label && <span className={styles.content}>{label}</span>}
-        <input ref={ref} className={styles.input} {...props} />
+        <input ref={ref} className={classNames(styles.input, styles[size])} {...props} />
       </label>
-      <span className={styles.error}>{error}</span>
+      {error && <span className={styles.error}>{error}</span>}
     </div>
   ),
 );

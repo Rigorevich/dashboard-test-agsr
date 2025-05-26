@@ -1,8 +1,8 @@
 import { Geist, Geist_Mono } from 'next/font/google';
-import { ToastContainer } from 'react-toastify';
 import classNames from 'classnames';
+import { type Metadata } from 'next';
 
-import type { Metadata } from 'next';
+import { Providers } from './providers';
 
 import './globals.scss';
 
@@ -29,8 +29,7 @@ export default function RootLayout({
   return (
     <html lang="ru">
       <body className={classNames(geistSans.variable, geistMono.variable)}>
-        {children}
-        <ToastContainer />
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

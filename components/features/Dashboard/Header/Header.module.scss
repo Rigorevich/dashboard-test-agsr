@@ -1,0 +1,30 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
+
+  & .logout {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: transparent;
+    color: white;
+    border: 1px solid white;
+    padding: 0.4rem 0.8rem;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+  }
+
+  & .title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+  }
+}
