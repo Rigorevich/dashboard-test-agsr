@@ -1,17 +1,23 @@
 'use client';
 
+import { useState } from 'react';
 import { Plus } from 'lucide-react';
 
 import { useAppSelector } from '@/store/hooks';
 
 import { Header } from './Header/Header';
 import { List } from './List/List';
+import { CreateListForm } from './CreateListForm/CreateListForm';
 import styles from './Dashboard.module.scss';
 
 export const Dashboard = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const { lists } = useAppSelector(state => state.lists);
 
-  const handleAdd = () => {};
+  const handleAdd = () => {
+    setIsModalOpen(true);
+  };
 
   return (
     <main className={styles.container}>
@@ -26,6 +32,8 @@ export const Dashboard = () => {
           <Plus size={20} /> Новый список
         </button>
       </div>
+
+      <CreateListForm isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </main>
   );
 };
