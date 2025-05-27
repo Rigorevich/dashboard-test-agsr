@@ -1,17 +1,61 @@
-.task.task {
+.taskContainer {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
 
-  background-color: #ffffff;
-  border-radius: 0.5rem;
-  margin-bottom: 0.5rem;
-  padding: 1.25rem;
-  font-weight: 400;
-  color: var(--text-color);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  & .task {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-weight: 400;
+    text-align: left;
+    padding: 12px;
+    border-radius: 8px;
+    background-color: transparent;
+    transition: background-color 0.2s ease;
+    color: var(--text-color);
+    cursor: pointer;
 
-  &:hover {
-    background-color: #f4f1f1;
+    &:hover {
+      background-color: #eee;
+    }
+  }
+}
+
+.controls {
+  display: flex;
+  gap: 8px;
+}
+
+.iconButton {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+
+  svg {
+    stroke: #555;
+  }
+
+  &:hover svg {
+    stroke: #000;
+  }
+}
+
+.status {
+  margin-top: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #888;
+
+  &.completed {
+    color: green;
+  }
+
+  &.inProgress {
+    color: orange;
   }
 }

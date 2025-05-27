@@ -30,13 +30,16 @@
       &.small {
         padding: 0.5rem;
       }
+
+      &:disabled {
+        border-color: #ccc;
+        cursor: not-allowed;
+      }
     }
   }
 
   .error {
-    display: inline-block;
-    height: 20px;
     font-size: 0.875rem;
-    color: red;
+    color: #e20606;
   }
 }
