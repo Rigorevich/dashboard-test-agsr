@@ -1,4 +1,4 @@
-.taskContainer {
+.container {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -11,8 +11,8 @@
     align-items: flex-start;
     font-weight: 400;
     text-align: left;
-    padding: 12px;
-    border-radius: 8px;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
     background-color: transparent;
     transition: background-color 0.2s ease;
     color: var(--text-color);
@@ -22,40 +22,67 @@
       background-color: #eee;
     }
   }
-}
 
-.controls {
-  display: flex;
-  gap: 8px;
-}
+  & .title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 4px;
 
-.iconButton {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 4px;
-  border-radius: 4px;
-
-  svg {
-    stroke: #555;
+    word-break: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
-  &:hover svg {
-    stroke: #000;
-  }
-}
+  & .description {
+    font-size: 14px;
+    color: #666;
 
-.status {
-  margin-top: 8px;
-  font-size: 12px;
-  font-weight: 500;
-  color: #888;
+    overflow: hidden;
+    word-break: break-word;
+    text-overflow: ellipsis;
+  }
+
+  & .controls {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  & .iconButton {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+
+    svg {
+      stroke: #555;
+    }
+
+    &:hover svg {
+      stroke: #000;
+    }
+  }
+
+  & .status {
+    margin-top: 0.5rem;
+    font-size: 14px;
+    font-weight: 500;
+    color: #888;
+  }
 
   &.completed {
-    color: green;
+    & .status {
+      color: #31f30f;
+    }
+
+    & .task h4 {
+      text-decoration: line-through;
+    }
   }
 
   &.inProgress {
-    color: orange;
+    & .status {
+      color: #00ff57;
+    }
   }
 }
