@@ -8,6 +8,7 @@ export interface Task {
   durationMinutes: number;
   createdAt: string;
   startedAt?: string;
+  completedAt?: string;
 }
 
 export interface List {
