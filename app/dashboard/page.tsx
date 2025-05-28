@@ -1,5 +1,8 @@
 import { Dashboard as DashboardComponent } from '@/components/features/Dashboard/Dashboard';
+import { getDashboardData } from '@/utils/dashboardService';
 
-export default function Dashboard() {
-  return <DashboardComponent />;
+export default async function Dashboard() {
+  const data = await getDashboardData();
+
+  return <DashboardComponent initialData={data} />;
 }

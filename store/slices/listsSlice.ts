@@ -4,50 +4,16 @@ import { v4 as uuidv4 } from 'uuid';
 import type { Dashboard, Task } from '@/types';
 
 const initialState: Dashboard = {
-  lists: [
-    {
-      id: '1',
-      title: 'Рабочие задачи',
-      tasks: [
-        {
-          id: '1',
-          title: 'Подготовить презентацию',
-          description: 'Создать слайды для отчета по проекту.',
-          status: 'todo',
-          durationMinutes: 90,
-          createdAt: new Date().toISOString(),
-        },
-      ],
-    },
-    {
-      id: '2',
-      title: 'Рабочие задачи',
-      tasks: [
-        {
-          id: '1',
-          title: 'Подготовить презентацию',
-          description: 'Создать слайды для отчета по проекту.',
-          status: 'todo',
-          durationMinutes: 90,
-          createdAt: new Date().toISOString(),
-        },
-        {
-          id: '2',
-          title: 'Подготовить презентацию',
-          description: 'Создать слайды для отчета по проекту.',
-          status: 'todo',
-          durationMinutes: 90,
-          createdAt: new Date().toISOString(),
-        },
-      ],
-    },
-  ],
+  lists: [],
 };
 
 const listsSlice = createSlice({
   name: 'lists',
   initialState,
   reducers: {
+    hydrateDashboard: (state, action: PayloadAction<Dashboard>) => {
+      state.lists = action.payload.lists;
+    },
     addList: (state, action: PayloadAction<{ title: string }>) => {
       const id = uuidv4();
 
@@ -108,7 +74,15 @@ const listsSlice = createSlice({
   },
 });
 
-export const { addList, editList, deleteList, deleteTask, addTask, updateTask, toggleTaskStatus } =
-  listsSlice.actions;
+export const {
+  hydrateDashboard,
+  addList,
+  editList,
+  deleteList,
+  deleteTask,
+  addTask,
+  updateTask,
+  toggleTaskStatus,
+} = listsSlice.actions;
 
 export default listsSlice.reducer;

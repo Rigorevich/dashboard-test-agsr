@@ -87,7 +87,6 @@ export const List = ({ list }: ListProps) => {
             key={task.id}
             listId={list.id}
             task={task}
-            onToggleStatus={() => {}}
             onEdit={() => handleOpenEditForm(task)}
             onClick={() => handleOpenViewForm(task)}
           />

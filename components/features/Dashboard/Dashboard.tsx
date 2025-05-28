@@ -1,16 +1,24 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Plus } from 'lucide-react';
 
-import { useAppSelector } from '@/store/hooks';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { hydrateDashboard } from '@/store/slices/listsSlice';
+import type { Dashboard as DashboardType } from '@/types';
 
 import { Header } from './Header/Header';
 import { List } from './List/List';
 import { CreateListForm } from './CreateListForm/CreateListForm';
 import styles from './Dashboard.module.scss';
 
-export const Dashboard = () => {
+interface DashboardProps {
+  initialData: DashboardType;
+}
+
+export const Dashboard = ({ initialData }: DashboardProps) => {
+  const dispatch = useAppDispatch();
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { lists } = useAppSelector(state => state.lists);
@@ -18,6 +26,10 @@ export const Dashboard = () => {
   const handleAdd = () => {
     setIsModalOpen(true);
   };
+
+  useEffect(() => {
+    dispatch(hydrateDashboard(initialData));
+  }, [dispatch, initialData]);
 
   return (
     <main className={styles.container}>
