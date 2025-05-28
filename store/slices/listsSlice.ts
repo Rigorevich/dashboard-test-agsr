@@ -33,24 +33,41 @@ const listsSlice = createSlice({
     deleteList: (state, action: PayloadAction<string>) => {
       state.lists = state.lists.filter(list => list.id !== action.payload);
     },
-    addTask: (state, action: PayloadAction<{ listId: string; task: Omit<Task, 'id'> }>) => {
+    addTask: (state, action: PayloadAction<{ listId: string; task: Omit<Task, 'id' | 'createdAt' | 'startedAt' | 'completedAt'> }>) => {
       const id = uuidv4();
+      const now = new Date().toISOString();
 
       const list = state.lists.find(list => list.id === action.payload.listId);
 
       if (list) {
-        list.tasks.push({ id, ...action.payload.task });
+        list.tasks.push({ 
+          id, 
+          ...action.payload.task,
+          createdAt: now,
+          startedAt: action.payload.task.status === 'in_progress' ? now : undefined,
+          completedAt: action.payload.task.status === 'done' ? now : undefined,
+        });
       }
     },
     updateTask: (state, action: PayloadAction<{ listId: string; task: Task }>) => {
       const { listId, task: updatedTask } = action.payload;
+      const now = new Date().toISOString();
 
       const list = state.lists.find(list => list.id === listId);
 
       if (list) {
         const index = list.tasks.findIndex(task => task.id === updatedTask.id);
         if (index !== -1) {
-          list.tasks[index] = updatedTask;
+          const oldTask = list.tasks[index];
+          list.tasks[index] = {
+            ...updatedTask,
+            startedAt: updatedTask.status === 'in_progress' && oldTask.status !== 'in_progress' 
+              ? now 
+              : oldTask.startedAt,
+            completedAt: updatedTask.status === 'done' && oldTask.status !== 'done'
+              ? now
+              : oldTask.completedAt,
+          };
         }
       }
     },
@@ -63,12 +80,23 @@ const listsSlice = createSlice({
     },
     toggleTaskStatus: (state, action: PayloadAction<{ listId: string; taskId: string }>) => {
       const list = state.lists.find(list => list.id === action.payload.listId);
-
       const task = list?.tasks.find(task => task.id === action.payload.taskId);
 
       if (task) {
-        task.status =
-          task.status === 'todo' ? 'in_progress' : task.status === 'in_progress' ? 'done' : 'todo';
+        const now = new Date().toISOString();
+        
+        if (task.status === 'todo') {
+          task.status = 'in_progress';
+          task.startedAt = now;
+          task.completedAt = undefined;
+        } else if (task.status === 'in_progress') {
+          task.status = 'done';
+          task.completedAt = now;
+        } else {
+          task.status = 'todo';
+          task.startedAt = undefined;
+          task.completedAt = undefined;
+        }
       }
     },
   },
