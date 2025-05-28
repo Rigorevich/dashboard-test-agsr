@@ -1,0 +1,32 @@
+.container {
+  padding: 2rem;
+  min-height: 100vh;
+  background: var(--background-gradient);
+  color: var(--text-color);
+}
+
+.lists {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.addButton {
+  background: #ffffff;
+  color: var(--accent-color);
+  font-weight: bold;
+  padding: 2rem;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  border: 2px dashed var(--accent-color);
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #f3e8ff;
+  }
+}
