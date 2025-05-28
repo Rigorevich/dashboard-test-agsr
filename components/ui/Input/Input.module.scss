@@ -1,0 +1,45 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+
+  .label {
+    margin-bottom: 0.375rem;
+
+    .content {
+      font-weight: 600;
+    }
+
+    .input {
+      width: 100%;
+      padding: 0.75rem;
+      margin-top: 0.25rem;
+      border-radius: 0.5rem;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+
+      &:hover {
+        border-color: #929ba5;
+      }
+
+      &:focus {
+        border-color: #0070f3;
+        outline: none;
+      }
+
+      &.small {
+        padding: 0.5rem;
+      }
+
+      &:disabled {
+        border-color: #ccc;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  .error {
+    font-size: 0.875rem;
+    color: #e20606;
+  }
+}

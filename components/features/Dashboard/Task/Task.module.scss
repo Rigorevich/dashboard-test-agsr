@@ -1,0 +1,88 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  & .task {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-weight: 400;
+    text-align: left;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    background-color: transparent;
+    transition: background-color 0.2s ease;
+    color: var(--text-color);
+    cursor: pointer;
+
+    &:hover {
+      background-color: #eee;
+    }
+  }
+
+  & .title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 4px;
+
+    word-break: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  & .description {
+    font-size: 14px;
+    color: #666;
+
+    overflow: hidden;
+    word-break: break-word;
+    text-overflow: ellipsis;
+  }
+
+  & .controls {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  & .iconButton {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+
+    svg {
+      stroke: #555;
+    }
+
+    &:hover svg {
+      stroke: #000;
+    }
+  }
+
+  & .status {
+    margin-top: 0.5rem;
+    font-size: 14px;
+    font-weight: 500;
+    color: #888;
+  }
+
+  &.completed {
+    & .status {
+      color: #31f30f;
+    }
+
+    & .task h4 {
+      text-decoration: line-through;
+    }
+  }
+
+  &.inProgress {
+    & .status {
+      color: #00ff57;
+    }
+  }
+}
