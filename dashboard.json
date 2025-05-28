@@ -1,9 +1,18 @@
 {
   "lists": [
     {
-      "id": "04b64766-bf9f-4995-b2b6-64d762bac6e3",
-      "title": "Список1",
-      "tasks": []
+      "id": "06a981db-3d3a-40fb-8d2d-ccb933753e23",
+      "title": "Список",
+      "tasks": [
+        {
+          "id": "85e4e49d-73d7-4e79-a781-49ef007d24ff",
+          "createdAt": "2025-05-28T10:54:19.521Z",
+          "title": "Задача",
+          "description": "задача",
+          "durationMinutes": 1,
+          "status": "todo"
+        }
+      ]
     }
   ]
 }

@@ -92,9 +92,9 @@ export const List = ({ list }: ListProps) => {
           />
         ))}
 
-        <Button className={styles.newTask} onClick={handleOpenCreateForm}>
+        <button className={styles.newTask} onClick={handleOpenCreateForm}>
           Добавить задачу
-        </Button>
+        </button>
       </div>
 
       <ConfirmModal
