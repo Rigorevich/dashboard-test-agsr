@@ -6,6 +6,7 @@ import { Plus } from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { hydrateDashboard } from '@/store/slices/listsSlice';
 import type { Dashboard as DashboardType } from '@/types';
+import { Loader } from '@/components/ui/Loader/Loader';
 
 import { Header } from './Header/Header';
 import { List } from './List/List';
@@ -20,6 +21,7 @@ export const Dashboard = ({ initialData }: DashboardProps) => {
   const dispatch = useAppDispatch();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const { lists } = useAppSelector(state => state.lists);
 
@@ -29,7 +31,16 @@ export const Dashboard = ({ initialData }: DashboardProps) => {
 
   useEffect(() => {
     dispatch(hydrateDashboard(initialData));
+    setIsLoading(false);
   }, [dispatch, initialData]);
+
+  if (isLoading) {
+    return (
+      <div className={styles.loaderContainer}>
+        <Loader  />
+      </div>
+    );
+  }
 
   return (
     <main className={styles.container}>
