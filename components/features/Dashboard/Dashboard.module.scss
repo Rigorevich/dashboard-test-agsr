@@ -5,6 +5,14 @@
   color: var(--text-color);
 }
 
+.loaderContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: var(--background-gradient);
+}
+
 .lists {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));

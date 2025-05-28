@@ -6,7 +6,6 @@ import { Pencil, Trash2, CheckCircle2 } from 'lucide-react';
 import { useAppDispatch } from '@/store/hooks';
 import { deleteTask, toggleTaskStatus } from '@/store/slices/listsSlice';
 import type { Task as TaskType } from '@/types';
-import { Button } from '@/components/ui/Button/Button';
 
 import styles from './Task.module.scss';
 
@@ -35,7 +34,7 @@ export const Task = ({ listId, task, onClick, onEdit }: TaskProps) => {
         [styles.inProgress]: task.status === 'in_progress',
       })}
     >
-      <Button className={styles.task} onClick={onClick}>
+      <button className={styles.task} onClick={onClick}>
         <div>
           <h4 className={styles.title}>{task.title}</h4>
           <p className={styles.description}>{task.description}</p>
@@ -47,7 +46,7 @@ export const Task = ({ listId, task, onClick, onEdit }: TaskProps) => {
               ? 'В процессе'
               : 'В планах'}
         </span>
-      </Button>
+      </button>
 
       <div className={styles.controls}>
         <button
